@@ -3,7 +3,7 @@
 
 name = "dev-26"
 main = "src/worker.js"     # Entry point to the Worker
-compatibility_date = "2026-22-05"  # Use today's date
+compatibility_date = "2026-05-22"  # Use today's date
 
 # Account information
 account_id = "f4deba2d283353797a807c91d959f4c8"
