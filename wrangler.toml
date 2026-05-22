@@ -1,7 +1,7 @@
 # wrangler.toml
 # THESE CAN ALL BE CHANGED AFTER DEPLOYMENT ON CF DASHBOARD > WORKER > SETTINGS
 
-name = "dev-26"
+name = "proxypizza"
 main = "src/worker.js"     # Entry point to the Worker
 compatibility_date = "2026-05-22"  # Use today's date
 
